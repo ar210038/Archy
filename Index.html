@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Thought ☕</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 100px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.2s;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      left: 30%;
+    }
+
+    #noBtn {
+      background: #ccc;
+      left: 55%;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #funny img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Random thought…</h1>
+  <p>coffee together sometime soon? ☕🙂</p>
+
+  <div class="buttons">
+    <button id="yesBtn">OK</button>
+    <button id="noBtn">NO</button>
+  </div>
+
+  <div id="funny" class="hidden">
+    <p id="funnyText"></p>
+    <img id="funnyGif">
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const funny = document.getElementById("funny");
+  const funnyText = document.getElementById("funnyText");
+  const funnyGif = document.getElementById("funnyGif");
+
+  let attempts = 0;
+
+  noBtn.addEventListener("mouseover", () => {
+    attempts++;
+
+    // move NO button
+    noBtn.style.left = Math.random() * 250 + "px";
+    noBtn.style.top = Math.random() * 60 + "px";
+
+    funny.classList.remove("hidden");
+
+    // STAGE 1: text only
+    if (attempts <= 7) {
+      funnyText.innerText = "Are you sure? 😅";
+      funnyGif.style.display = "block";
+      funnyGif.src = "mochi.gif";
+    }
+
+    // STAGE 3: second GIF
+    else {
+      funnyText.innerText = "Come on 😢";
+      funnyGif.style.display = "block";
+      funnyGif.src = "comeon.gif";
+    }
+  });
+
+  yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        background:#ff4d6d;
+        text-align:center;
+      ">
+        <h1 style="color:white;">Yay 😄</h1>
+        <p style="color:white; font-size:18px;">
+          lets plan it now ☕
+        </p>
+        <img src="happy.gif" style="width:300px; border-radius:16px;">
+      </div>
+    `;
+  });
+</script>
+
+</body>
+</html>
